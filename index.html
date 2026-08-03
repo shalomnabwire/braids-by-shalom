@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Braids by Shalom — Nairobi</title>
+<title>Braids by Shalom — Ngong</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;1,6..96,500&family=Manrope:wght@400;500;600;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
@@ -81,7 +81,18 @@
     padding:16px 32px;
     max-width:1180px; margin:0 auto;
   }
-  .nav-logo{
+  .nav-logo-container{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    height:50px;
+  }
+  .nav-logo-img{
+    height:100%;
+    width:auto;
+    object-fit:contain;
+  }
+  .nav-logo-text{
     font-family:'Mrs Saint Delafield', cursive;
     font-size:1.9rem;
     color:var(--gold-bright);
@@ -263,7 +274,21 @@
 
   footer{background:var(--black); padding:56px 0 32px; border-top:1px solid rgba(198,161,91,0.15);}
   .foot-grid{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px;}
-  .foot-logo{font-family:'Mrs Saint Delafield', cursive; font-size:1.7rem; color:var(--gold-bright); margin-bottom:10px;}
+  .foot-logo-container{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .foot-logo-img{
+    height:40px;
+    width:auto;
+    object-fit:contain;
+  }
+  .foot-logo-text{
+    font-family:'Mrs Saint Delafield', cursive;
+    font-size:1.7rem;
+    color:var(--gold-bright);
+  }
   .foot-col p, .foot-col a{color:var(--ivory-dim); font-size:0.88rem; display:block; margin-bottom:8px;}
   .foot-col a:hover{color:var(--gold-bright);}
   .foot-col h4{font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;}
@@ -299,7 +324,9 @@
 
 <header>
   <nav class="nav">
-    <a href="#top" class="nav-logo">Braids by Shalom</a>
+    <a href="#top" class="nav-logo-container">
+      <img src="https://cdn.prod.website-files.com/67c9a7d25f7e2d0007897f2d/67cba68e3d3a910008d8a5f3_BRAIDS%20BY%20SHALOM%20LOGO.png" alt="Braids by Shalom" class="nav-logo-img">
+    </a>
     <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#services">Services</a>
@@ -315,7 +342,7 @@
 <section class="hero" id="top">
   <div class="hero-inner">
     <div>
-      <div class="eyebrow hero-eyebrow reveal">Nairobi · Braid Studio</div>
+      <div class="eyebrow hero-eyebrow reveal">Ngong · Braid Studio</div>
       <h1 class="reveal">Every strand,<br><em>woven with</em> intention.</h1>
       <p class="lede reveal">Shalom hand-braids knotless, boho and protective styles built to last — precise parting, gentle tension, and a finish that holds its shape for weeks.</p>
       <div class="hero-actions reveal">
@@ -374,7 +401,7 @@
       <div class="eyebrow reveal">Meet Shalom</div>
       <h2 class="reveal">A braider first, a perfectionist always.</h2>
       <p class="reveal">Shalom Nabwire is a professional stylist, public relations officer, digital marketing consultant and content creator. With a passion for precision and scalp health, Shalom specializes in protective styling — from tight, uniform cornrows to soft, boho-textured knotless braids. Every client leaves with a scalp-friendly install and a style built to last.</p>
-      <p class="reveal">Braids by Shalom is a home studio in Nairobi, run on appointment, one client at a time — because a good braid needs full attention, not a rushed chair.</p>
+      <p class="reveal">Braids by Shalom is a home studio in Ngong, run on appointment, one client at a time — because a good braid needs full attention, not a rushed chair.</p>
       <div class="about-stats reveal">
         <div class="stat"><b>Pro</b><span>Stylist & Consultant</span></div>
         <div class="stat"><b>100%</b><span>Scalp Health Focus</span></div>
@@ -520,7 +547,7 @@
   <div class="wrap">
     <blockquote class="reveal">
       "My knotless install lasted almost seven weeks and still looked fresh on day one. Shalom's hands are gentle but the parting is razor sharp."
-      <cite>— Wanjiru M., Nairobi</cite>
+      <cite>— Mitchelle Ann, Kawangware</cite>
     </blockquote>
   </div>
 </section>
@@ -531,7 +558,7 @@
     <div class="loc-block reveal">
       <div class="eyebrow" style="margin-bottom:14px;">Find the Studio</div>
       <h3>Braids by Shalom</h3>
-      <p>Lemiso Road, Aberdare Plaza, Nairobi, Kenya</p>
+      <p>Lemiso Road, Ngong Studio, Ngong, Kenya</p>
       <p><a href="tel:+254799174917">+254 799 174 917</a></p>
       <p><a href="https://wa.me/254799174917">WhatsApp Message</a></p>
       <p><a href="mailto:nabwireshalom797@gmail.com">nabwireshalom797@gmail.com</a></p>
@@ -545,7 +572,7 @@
       <div class="hours-row"><span>Monday – Friday</span><span>9:00 AM – 7:00 PM</span></div>
       <div class="hours-row"><span>Saturday</span><span>8:00 AM – 8:00 PM</span></div>
       <div class="hours-row"><span>Sunday</span><span>By appointment only</span></div>
-      <p style="margin-top:20px; color:var(--gold-bright);">All bookings by WhatsApp or email.</p>
+      <p style="margin-top:20px; color:var(--gold-bright);">All bookings by WhatsApp or email. Reserves at Ngong Studio.</p>
     </div>
   </div>
 </section>
@@ -554,7 +581,7 @@
 <section class="cta-band">
   <div class="wrap">
     <h2 class="reveal">Ready for your next install?</h2>
-    <p class="reveal">Message Shalom on WhatsApp or email to check availability and lock in your style, size and date.</p>
+    <p class="reveal">Message Shalom on WhatsApp or email to check availability and lock in your style, size and date at Ngong Studio.</p>
     <a href="https://wa.me/254799174917" class="btn btn-gold reveal">Chat on WhatsApp</a>
   </div>
 </section>
@@ -563,7 +590,9 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-col">
-        <div class="foot-logo">Braids by Shalom</div>
+        <div class="foot-logo-container">
+          <img src="https://cdn.prod.website-files.com/67c9a7d25f7e2d0007897f2d/67cba68e3d3a910008d8a5f3_BRAIDS%20BY%20SHALOM%20LOGO.png" alt="Braids by Shalom" class="foot-logo-img">
+        </div>
         <p>Protective styling, done with intention.</p>
       </div>
       <div class="foot-col">
@@ -579,7 +608,7 @@
         <a href="https://tiktok.com/@braidsbyshalom2" target="_blank" rel="noopener">TikTok</a>
       </div>
     </div>
-    <div class="foot-bottom">&copy; 2026 Braids by Shalom, Nairobi. All rights reserved.</div>
+    <div class="foot-bottom">&copy; 2026 Braids by Shalom, Ngong. All rights reserved.</div>
   </div>
 </footer>
 
