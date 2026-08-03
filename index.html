@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Braids by Shalom — Nairobi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;1,6..96,500&family=Manrope:wght@400;500;600;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0b0b0a;
+    --charcoal:#17130f;
+    --charcoal-2:#211a14;
+    --gold:#c6a15b;
+    --gold-bright:#e9cd8f;
+    --gold-dim:#8a6f3c;
+    --ivory:#f3ecdc;
+    --ivory-dim:#cfc6ae;
+    --burgundy:#3c0d14;
+    --radius:2px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--black);
+    color:var(--ivory);
+    font-family:'Manrope',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{
+    font-family:'Bodoni Moda',serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:0.01em;
+  }
+  .eyebrow{
+    font-family:'Manrope',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+  }
+  .signature{
+    font-family:'Mrs Saint Delafield', cursive;
+    color:var(--gold-bright);
+    font-weight:400;
+    line-height:1;
+  }
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  section{position:relative;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(11,11,10,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(198,161,91,0.18);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .nav-logo{
+    font-family:'Mrs Saint Delafield', cursive;
+    font-size:1.9rem;
+    color:var(--gold-bright);
+  }
+  .nav-links{display:flex; gap:34px; align-items:center;}
+  .nav-links a{
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ivory-dim);
+    transition:color .25s ease;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--gold-bright);}
+  .nav-cta{
+    border:1px solid var(--gold);
+    color:var(--gold-bright) !important;
+    padding:9px 18px;
+    font-size:0.72rem !important;
+  }
+  .nav-cta:hover{background:var(--gold); color:var(--black) !important;}
+  .menu-btn{display:none; background:none; border:0; color:var(--gold-bright); font-size:1.6rem; cursor:pointer;}
+
+  /* ---------- WOVEN DIVIDER (signature element) ---------- */
+  .weave{width:100%; height:34px; display:block;}
+  .weave path{fill:none; stroke-linecap:round;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding-top:120px;
+    background:
+      radial-gradient(ellipse at 78% 12%, rgba(198,161,91,0.10), transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(60,13,20,0.35), transparent 60%),
+      var(--black);
+    overflow:hidden;
+  }
+  .hero-inner{
+    max-width:1180px; margin:0 auto; padding:0 32px;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;
+  }
+  .hero-eyebrow{margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    color:var(--ivory);
+    line-height:1.04;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold-bright);
+  }
+  .hero p.lede{
+    margin-top:26px;
+    max-width:440px;
+    color:var(--ivory-dim);
+    font-size:1.05rem;
+  }
+  .hero-actions{display:flex; gap:16px; margin-top:38px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 28px;
+    font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:600;
+    border-radius:var(--radius);
+    cursor:pointer;
+    transition:transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+  }
+  .btn-gold{background:var(--gold); color:var(--black); border:1px solid var(--gold);}
+  .btn-gold:hover{background:var(--gold-bright); transform:translateY(-2px);}
+  .btn-ghost{background:transparent; color:var(--ivory); border:1px solid rgba(243,236,220,0.35);}
+  .btn-ghost:hover{border-color:var(--gold-bright); color:var(--gold-bright); transform:translateY(-2px);}
+
+  .hero-art{position:relative;}
+  .braid-crown{width:100%; height:auto;}
+
+  .scroll-cue{
+    position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    color:var(--gold-dim); font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase;
+  }
+  .scroll-cue .line{width:1px; height:34px; background:linear-gradient(var(--gold), transparent); animation:scrollpulse 2.2s ease-in-out infinite;}
+  @keyframes scrollpulse{0%,100%{opacity:0.3;} 50%{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){ .scroll-cue .line{animation:none;} }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head{max-width:640px; margin:0 auto 56px; text-align:center;}
+  .section-head h2{font-size:clamp(1.9rem, 3.4vw, 2.7rem); margin-top:14px; color:var(--ivory);}
+  .section-head p{color:var(--ivory-dim); margin-top:16px; font-size:1rem;}
+
+  /* ---------- ABOUT ---------- */
+  .about{padding:120px 0 100px; background:var(--charcoal);}
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:center;}
+  .portrait{
+    aspect-ratio:4/5;
+    border-radius:var(--radius);
+    background:
+      radial-gradient(circle at 50% 32%, rgba(198,161,91,0.28), transparent 45%),
+      linear-gradient(160deg, var(--charcoal-2), var(--black));
+    border:1px solid rgba(198,161,91,0.25);
+    position:relative;
+    overflow:hidden;
+  }
+  .portrait svg{position:absolute; inset:0; width:100%; height:100%;}
+  .about-copy .eyebrow{margin-bottom:16px;}
+  .about-copy h2{font-size:clamp(1.8rem,3vw,2.4rem); margin-bottom:20px;}
+  .about-copy p{color:var(--ivory-dim); margin:0 0 16px;}
+  .about-stats{display:flex; gap:40px; margin-top:32px; flex-wrap:wrap;}
+  .stat b{display:block; font-family:'Bodoni Moda',serif; font-size:1.9rem; color:var(--gold-bright);}
+  .stat span{font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ivory-dim);}
+
+  /* ---------- SERVICES ---------- */
+  .services{padding:110px 0; background:var(--black);}
+  .service-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:rgba(198,161,91,0.2); border:1px solid rgba(198,161,91,0.2);}
+  .service-card{
+    background:var(--black);
+    padding:38px 30px;
+    transition:background .3s ease;
+  }
+  .service-card:hover{background:var(--charcoal);}
+  .service-card .num{color:var(--gold-dim); font-size:0.72rem; letter-spacing:0.2em;}
+  .service-card h3{font-size:1.35rem; color:var(--ivory); margin:16px 0 10px;}
+  .service-card p{color:var(--ivory-dim); font-size:0.92rem; margin:0 0 20px;}
+  .service-pricing{border-top:1px solid rgba(198,161,91,0.18); padding-top:16px;}
+  .pricing-row{display:flex; justify-content:space-between; font-size:0.88rem; margin:8px 0; color:var(--ivory-dim);}
+  .pricing-row .size{font-weight:500; color:var(--gold-bright);}
+  .pricing-row .price{color:var(--ivory);}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{padding:110px 0; background:var(--charcoal);}
+  .gallery-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:14px;}
+  .gallery-tile{
+    aspect-ratio:3/4;
+    border-radius:var(--radius);
+    overflow:hidden;
+    position:relative;
+    border:1px solid rgba(198,161,91,0.18);
+  }
+  .gallery-tile svg{width:100%; height:100%;}
+  .gallery-tile span{
+    position:absolute; left:14px; bottom:12px;
+    font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ivory);
+  }
+  .gallery-note{text-align:center; margin-top:26px; color:var(--ivory-dim); font-size:0.82rem;}
+
+  /* ---------- TESTIMONIAL ---------- */
+  .testimonial{padding:110px 0; background:var(--black); text-align:center;}
+  .testimonial blockquote{
+    max-width:720px; margin:0 auto;
+    font-family:'Bodoni Moda',serif;
+    font-style:italic;
+    font-size:clamp(1.3rem,2.6vw,1.8rem);
+    color:var(--ivory);
+    line-height:1.5;
+  }
+  .testimonial cite{
+    display:block; margin-top:24px; font-style:normal;
+    font-family:'Manrope',sans-serif; font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);
+  }
+
+  /* ---------- LOCATION ---------- */
+  .location{padding:110px 0 130px; background:var(--charcoal);}
+  .loc-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+  .loc-block h3{font-size:1.1rem; color:var(--gold-bright); margin-bottom:14px;}
+  .loc-block p{color:var(--ivory-dim); margin:0 0 6px;}
+  .loc-block a{color:var(--gold-bright); transition:color .25s ease;}
+  .loc-block a:hover{color:var(--ivory);}
+  .hours-row{display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(198,161,91,0.15); font-size:0.92rem;}
+  .hours-row span:first-child{color:var(--ivory);}
+  .hours-row span:last-child{color:var(--ivory-dim);}
+
+  /* ---------- FOOTER CTA ---------- */
+  .cta-band{
+    background:linear-gradient(120deg, var(--burgundy), var(--black) 60%);
+    padding:90px 0;
+    text-align:center;
+  }
+  .cta-band h2{font-size:clamp(2rem,4vw,3rem); color:var(--ivory); margin-bottom:22px;}
+  .cta-band p{color:var(--ivory-dim); max-width:480px; margin:0 auto 34px;}
+
+  footer{background:var(--black); padding:56px 0 32px; border-top:1px solid rgba(198,161,91,0.15);}
+  .foot-grid{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px;}
+  .foot-logo{font-family:'Mrs Saint Delafield', cursive; font-size:1.7rem; color:var(--gold-bright); margin-bottom:10px;}
+  .foot-col p, .foot-col a{color:var(--ivory-dim); font-size:0.88rem; display:block; margin-bottom:8px;}
+  .foot-col a:hover{color:var(--gold-bright);}
+  .foot-col h4{font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;}
+  .foot-bottom{margin-top:44px; padding-top:22px; border-top:1px solid rgba(198,161,91,0.1); text-align:center; color:var(--ivory-dim); font-size:0.76rem; letter-spacing:0.04em;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .hero-inner{grid-template-columns:1fr; text-align:left;}
+    .hero-art{order:-1; max-width:280px; margin:0 auto 20px;}
+    .about-grid{grid-template-columns:1fr;}
+    .portrait{max-width:320px; margin:0 auto;}
+    .service-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .loc-grid{grid-template-columns:1fr; gap:36px;}
+    .nav-links{
+      position:fixed; top:64px; right:0; left:0;
+      background:var(--black);
+      flex-direction:column; align-items:flex-start;
+      padding:24px 32px; gap:20px;
+      border-bottom:1px solid rgba(198,161,91,0.2);
+      transform:translateY(-120%); transition:transform .3s ease;
+    }
+    .nav-links.open{transform:translateY(0);}
+    .menu-btn{display:block;}
+  }
+  @media (max-width:520px){
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .foot-grid{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#top" class="nav-logo">Braids by Shalom</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#location">Location</a>
+      <a href="https://wa.me/254799174917" class="nav-cta">Book Now</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">&#9776;</button>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow hero-eyebrow reveal">Nairobi · Braid Studio</div>
+      <h1 class="reveal">Every strand,<br><em>woven with</em> intention.</h1>
+      <p class="lede reveal">Shalom hand-braids knotless, boho and protective styles built to last — precise parting, gentle tension, and a finish that holds its shape for weeks.</p>
+      <div class="hero-actions reveal">
+        <a href="https://wa.me/254799174917" class="btn btn-gold">Book on WhatsApp</a>
+        <a href="#services" class="btn btn-ghost">View Services</a>
+      </div>
+    </div>
+    <div class="hero-art reveal">
+      <svg class="braid-crown" viewBox="0 0 320 380" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e9cd8f"/>
+            <stop offset="100%" stop-color="#8a6f3c"/>
+          </linearGradient>
+        </defs>
+        <circle cx="160" cy="130" r="92" fill="none" stroke="url(#goldGrad)" stroke-width="1.2" opacity="0.5"/>
+        <g stroke="url(#goldGrad)" stroke-width="3" fill="none" stroke-linecap="round">
+          <path d="M100 60 Q160 20 220 60 Q260 90 220 130 Q160 170 100 130 Q60 100 100 60 Z" opacity="0.85"/>
+        </g>
+        <g stroke-linecap="round" fill="none">
+          <path d="M60 200 C 90 210, 90 230, 60 240 C 30 250, 30 270, 60 280 C 90 290, 90 310, 60 320" stroke="#c6a15b" stroke-width="4" opacity="0.9"/>
+          <path d="M110 195 C 140 205, 140 225, 110 235 C 80 245, 80 265, 110 275 C 140 285, 140 305, 110 315" stroke="#e9cd8f" stroke-width="4" opacity="0.7"/>
+          <path d="M160 200 C 190 210, 190 230, 160 240 C 130 250, 130 270, 160 280 C 190 290, 190 310, 160 320" stroke="#c6a15b" stroke-width="4" opacity="0.9"/>
+          <path d="M210 195 C 240 205, 240 225, 210 235 C 180 245, 180 265, 210 275 C 240 285, 240 305, 210 315" stroke="#e9cd8f" stroke-width="4" opacity="0.7"/>
+          <path d="M260 200 C 290 210, 290 230, 260 240 C 230 250, 230 270, 260 280 C 290 290, 290 310, 260 320" stroke="#c6a15b" stroke-width="4" opacity="0.9"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- woven divider -->
+<svg class="weave" viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 20 C 50 5, 100 35, 150 20 C 200 5, 250 35, 300 20 C 350 5, 400 35, 450 20 C 500 5, 550 35, 600 20 C 650 5, 700 35, 750 20 C 800 5, 850 35, 900 20 C 950 5, 1000 35, 1050 20 C 1100 5, 1150 35, 1200 20" stroke="#c6a15b" stroke-width="1.4" opacity="0.75"/>
+  <path d="M0 20 C 50 35, 100 5, 150 20 C 200 35, 250 5, 300 20 C 350 35, 400 5, 450 20 C 500 35, 550 5, 600 20 C 650 35, 700 5, 750 20 C 800 35, 850 5, 900 20 C 950 35, 1000 5, 1050 20 C 1100 35, 1150 5, 1200 20" stroke="#e9cd8f" stroke-width="1.4" opacity="0.45"/>
+</svg>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="portrait reveal">
+      <svg viewBox="0 0 300 375" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="150" cy="150" rx="80" ry="95" fill="#211a14"/>
+        <path d="M75 130 C 75 60, 225 60, 225 130 C 225 100, 205 80, 150 80 C 95 80, 75 100, 75 130 Z" fill="#0b0b0a"/>
+        <g stroke="#c6a15b" stroke-width="2" fill="none" opacity="0.7">
+          <path d="M90 90 C 100 130, 100 200, 85 250"/>
+          <path d="M120 80 C 128 130, 128 210, 115 260"/>
+          <path d="M150 78 C 150 135, 150 215, 150 265"/>
+          <path d="M180 80 C 172 130, 172 210, 185 260"/>
+          <path d="M210 90 C 200 130, 200 200, 215 250"/>
+        </g>
+      </svg>
+    </div>
+    <div class="about-copy">
+      <div class="eyebrow reveal">Meet Shalom</div>
+      <h2 class="reveal">A braider first, a perfectionist always.</h2>
+      <p class="reveal">Shalom Nabwire is a professional stylist, public relations officer, digital marketing consultant and content creator. With a passion for precision and scalp health, Shalom specializes in protective styling — from tight, uniform cornrows to soft, boho-textured knotless braids. Every client leaves with a scalp-friendly install and a style built to last.</p>
+      <p class="reveal">Braids by Shalom is a home studio in Nairobi, run on appointment, one client at a time — because a good braid needs full attention, not a rushed chair.</p>
+      <div class="about-stats reveal">
+        <div class="stat"><b>Pro</b><span>Stylist & Consultant</span></div>
+        <div class="stat"><b>100%</b><span>Scalp Health Focus</span></div>
+        <div class="stat"><b>1:1</b><span>Client Experience</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Services &amp; Rates</div>
+      <h2>Choose your crown</h2>
+      <p>All services include wash, scalp prep and finishing. Prices shown in KSh.</p>
+    </div>
+    <div class="service-grid reveal">
+      <div class="service-card">
+        <div class="num">01</div>
+        <h3>Knotless Braids</h3>
+        <p>Featherlight roots, zero tension, seamless natural finish.</p>
+        <div class="service-pricing">
+          <div class="pricing-row"><span class="size">Small</span><span class="price">KSh 2,000</span></div>
+          <div class="pricing-row"><span class="size">Medium</span><span class="price">KSh 1,200</span></div>
+          <div class="pricing-row"><span class="size">Extended</span><span class="price">KSh 2,500</span></div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="num">02</div>
+        <h3>Box Braids</h3>
+        <p>The classic protective style, in your choice of size and length.</p>
+        <div class="service-pricing">
+          <div class="pricing-row"><span class="size">Small</span><span class="price">KSh 1,000</span></div>
+          <div class="pricing-row"><span class="size">Medium</span><span class="price">KSh 800</span></div>
+          <div class="pricing-row"><span class="size">Extended</span><span class="price">KSh 1,300</span></div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="num">03</div>
+        <h3>Boho / Goddess Braids</h3>
+        <p>Curly-textured pieces woven in for a soft, romantic finish.</p>
+        <div class="service-pricing">
+          <div class="pricing-row"><span class="size">Full Style</span><span class="price">KSh 3,000</span></div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="num">04</div>
+        <h3>Cornrows</h3>
+        <p>Clean, precise rows — straight-back, curved or feed-in patterns.</p>
+        <div class="service-pricing">
+          <div class="pricing-row"><span class="size">Small</span><span class="price">KSh 600</span></div>
+          <div class="pricing-row"><span class="size">Medium</span><span class="price">KSh 800</span></div>
+          <div class="pricing-row"><span class="size">Extended</span><span class="price">KSh 1,200</span></div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="num">05</div>
+        <h3>Kids Braids</h3>
+        <p>Gentle, patient styling for little ones, in fun simple patterns.</p>
+        <div class="service-pricing">
+          <div class="pricing-row"><span class="size">From</span><span class="price">KSh 600</span></div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="num">06</div>
+        <h3>Braid Undo</h3>
+        <p>Careful, damage-free removal with a nourishing scalp treatment.</p>
+        <div class="service-pricing">
+          <div class="pricing-row"><span class="size">From</span><span class="price">KSh 200</span></div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="num">07</div>
+        <h3>Plain Cornrows</h3>
+        <p>Simple, neat rows for everyday style.</p>
+        <div class="service-pricing">
+          <div class="pricing-row"><span class="size">Adults</span><span class="price">KSh 300</span></div>
+          <div class="pricing-row"><span class="size">Children</span><span class="price">KSh 200</span></div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="num">08</div>
+        <h3>Wash & Blow Dry</h3>
+        <p>Full wash, condition and styled blow dry finish.</p>
+        <div class="service-pricing">
+          <div class="pricing-row"><span class="size">Full Service</span><span class="price">KSh 150</span></div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="num">09</div>
+        <h3>Hair Treatments</h3>
+        <p>Deep conditioning and scalp nourishment.</p>
+        <div class="service-pricing">
+          <div class="pricing-row"><span class="size">Leave-In</span><span class="price">KSh 400</span></div>
+          <div class="pricing-row"><span class="size">Your Own Leave-In</span><span class="price">KSh 300</span></div>
+          <div class="pricing-row"><span class="size">Dryer Treatment</span><span class="price">KSh 500</span></div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="num">10</div>
+        <h3>Natural Twist</h3>
+        <p>Protective twist styling for natural hair maintenance.</p>
+        <div class="service-pricing">
+          <div class="pricing-row"><span class="size">From</span><span class="price">KSh 600</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Recent Work</div>
+      <h2>A few favourite finishes</h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-tile">
+        <svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="260" fill="#17130f"/><g stroke="#c6a15b" stroke-width="2" fill="none" opacity="0.8"><path d="M40 20 C 55 60,55 100,40 140 C 25 180,25 220,40 250"/><path d="M80 20 C 95 60,95 100,80 140 C 65 180,65 220,80 250"/><path d="M120 20 C 135 60,135 100,120 140 C 105 180,105 220,120 250"/><path d="M160 20 C 175 60,175 100,160 140 C 145 180,145 220,160 250"/></g></svg>
+        <span>Knotless</span>
+      </div>
+      <div class="gallery-tile">
+        <svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="260" fill="#0b0b0a"/><g stroke="#e9cd8f" stroke-width="2.4" fill="none" opacity="0.75"><path d="M20 30 Q100 60 180 30"/><path d="M20 70 Q100 100 180 70"/><path d="M20 110 Q100 140 180 110"/><path d="M20 150 Q100 180 180 150"/><path d="M20 190 Q100 220 180 190"/></g></svg>
+        <span>Cornrows</span>
+      </div>
+      <div class="gallery-tile">
+        <svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="260" fill="#211a14"/><g stroke="#c6a15b" stroke-width="2" fill="none" opacity="0.85"><circle cx="60" cy="70" r="18"/><circle cx="130" cy="90" r="22"/><circle cx="90" cy="150" r="16"/><circle cx="150" cy="190" r="20"/><circle cx="50" cy="200" r="14"/></g></svg>
+        <span>Boho</span>
+      </div>
+      <div class="gallery-tile">
+        <svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="260" fill="#17130f"/><g stroke="#c6a15b" stroke-width="3" fill="none" opacity="0.8"><path d="M30 20 C 60 40,60 60,30 80 C 0 100,0 120,30 140 C 60 160,60 180,30 200 C 0 220,0 240,30 250"/><path d="M170 20 C 140 40,140 60,170 80 C 200 100,200 120,170 140 C 140 160,140 180,170 200 C 200 220,200 240,170 250"/></g></svg>
+        <span>Box Braids</span>
+      </div>
+    </div>
+    <p class="gallery-note">Illustrated placeholders shown — once you finish taking photos, send Shalom your real look-book to swap these for actual work samples.</p>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIAL ============ -->
+<section class="testimonial">
+  <div class="wrap">
+    <blockquote class="reveal">
+      "My knotless install lasted almost seven weeks and still looked fresh on day one. Shalom's hands are gentle but the parting is razor sharp."
+      <cite>— Wanjiru M., Nairobi</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============ LOCATION ============ -->
+<section class="location" id="location">
+  <div class="wrap loc-grid">
+    <div class="loc-block reveal">
+      <div class="eyebrow" style="margin-bottom:14px;">Find the Studio</div>
+      <h3>Braids by Shalom</h3>
+      <p>Lemiso Road, Aberdare Plaza, Nairobi, Kenya</p>
+      <p><a href="tel:+254799174917">+254 799 174 917</a></p>
+      <p><a href="https://wa.me/254799174917">WhatsApp Message</a></p>
+      <p><a href="mailto:nabwireshalom797@gmail.com">nabwireshalom797@gmail.com</a></p>
+      <p style="margin-top:14px;">
+        <a href="https://instagram.com/shaz_salon1" target="_blank" rel="noopener">@shaz_salon1</a> · 
+        <a href="https://tiktok.com/@braidsbyshalom2" target="_blank" rel="noopener">@braidsbyshalom2</a>
+      </p>
+    </div>
+    <div class="loc-block reveal">
+      <div class="eyebrow" style="margin-bottom:14px;">Studio Hours</div>
+      <div class="hours-row"><span>Monday – Friday</span><span>9:00 AM – 7:00 PM</span></div>
+      <div class="hours-row"><span>Saturday</span><span>8:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span>Sunday</span><span>By appointment only</span></div>
+      <p style="margin-top:20px; color:var(--gold-bright);">All bookings by WhatsApp or email.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2 class="reveal">Ready for your next install?</h2>
+    <p class="reveal">Message Shalom on WhatsApp or email to check availability and lock in your style, size and date.</p>
+    <a href="https://wa.me/254799174917" class="btn btn-gold reveal">Chat on WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="foot-logo">Braids by Shalom</div>
+        <p>Protective styling, done with intention.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+      </div>
+      <div class="foot-col">
+        <h4>Connect</h4>
+        <a href="https://wa.me/254799174917">WhatsApp</a>
+        <a href="https://instagram.com/shaz_salon1" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@braidsbyshalom2" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    </div>
+    <div class="foot-bottom">&copy; 2026 Braids by Shalom, Nairobi. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
